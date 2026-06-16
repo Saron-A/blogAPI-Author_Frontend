@@ -14,10 +14,39 @@
       </div>
       <div class="label-input">
         <label for="body">Enter body of the post: </label>
-        <input type="body" id="body" name="body" required />
+        <textarea type="body" id="body" name="body" required> </textarea>
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit">Add Blog</button>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const form = document.querySelector("form");
+
+      const addNewPost = async (e) => {
+        try {
+          e.preventDefault();
+          const title = document.querySelector("#title").value.trim();
+          const body = document.querySelector("#body").value.trim();
+          const token = localStorage.getItem("token");
+
+          const newPost = { title, body };
+
+          const res = await axios.post(
+            "http://localhost:5000/api/posts",
+            newPost,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+
+          console.log(res.data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+    </script>
   </body>
 </html>

@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 
 const getAllData = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/dashboard", {
+    const res = await axios.get("http://localhost:5000/api/dashboardA", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -36,7 +36,7 @@ const createElements = (posts, user) => {
 
   headerDiv.append(h1, h2);
 
-  // display user's posts - published and unpublished if any or a message if not
+  // display user's posts - published and unpublished if any or a message if not -- get users posts by id
   if (posts.length === 0) {
     const h3 = document.createElement("h3");
     h3.textContent = "No posts yet";
