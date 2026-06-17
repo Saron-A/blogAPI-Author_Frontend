@@ -27,6 +27,7 @@ getAllData();
 const createElements = (posts, user) => {
   const headerDiv = document.querySelector("#header");
   const postsDiv = document.querySelector(".posts");
+  postsDiv.setAttribute("style", "display: flex; gap: 1rem");
 
   const h1 = document.createElement("h1");
   h1.textContent = `Welcome back, ${user.username} !`;
@@ -44,17 +45,50 @@ const createElements = (posts, user) => {
   } else {
     posts.forEach((post) => {
       const postDiv = document.createElement("div");
+      postDiv.setAttribute(
+        "style",
+        "border : 0.125rem solid black; padding : 1rem; border-radius : 1rem; width: fit-content",
+      );
 
       const titleH = document.createElement("h3");
       titleH.textContent = `${post.title}`;
 
       const authorH = document.createElement("h4");
       authorH.textContent = `${post.author}`;
+      const publishBtn = document.createElement("button");
+      const isPublished = document.createElement("p");
+
+      if (post.is_published === false) {
+        isPublished.textContent = "Not Published";
+        publishBtn.innerHTML = "publish";
+      } else {
+        isPublished.textContent = "Published";
+        publishBtn.innerHTML = "Published";
+        publishBtn.disabled = true;
+      }
 
       const timeH = document.createElement("p");
-      timeH.textContent = `${post.created_at}`;
+      timeH.innerHTML = `${post.created_at}`; // fix the time it says undefined though the backend send the actual time
 
-      postDiv.append(titleH, authorH, timeH);
+      publishBtn.addEventListener("click", async () => {
+        // we need to edit the info on the database using the post.id
+        const res = await axios.put(
+          `http://localhost:5000/api/posts/${post.id}/publish`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        isPublished.textContent = "Published";
+        publishBtn.innerHTML = "Published";
+        publishBtn.disabled = true;
+      });
+
+      postDiv.append(titleH, authorH, isPublished, timeH, publishBtn);
+      postsDiv.appendChild(postDiv);
     });
   }
 };

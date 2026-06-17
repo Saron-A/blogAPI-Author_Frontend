@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Create Post Form</title>
   </head>
   <body>
@@ -19,7 +20,7 @@
 
       <button type="submit">Add Blog</button>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
       const form = document.querySelector("form");
 
@@ -43,10 +44,13 @@
           );
 
           console.log(res.data);
+          window.location.href = "../dashboard.html";
         } catch (err) {
           console.error(err);
         }
       };
+
+      form.addEventListener("submit", addNewPost);
     </script>
   </body>
 </html>
