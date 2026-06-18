@@ -89,6 +89,12 @@ const createElements = (posts, user) => {
 
       postDiv.append(titleH, authorH, isPublished, timeH, publishBtn);
       postsDiv.appendChild(postDiv);
+      postDiv.addEventListener("click", () => {
+        // open a page dynamically and show the body as well
+        console.log(post);
+        console.log(post.id);
+        window.location.href = `./post.html?postId=${post.id}`;
+      });
     });
   }
 };
