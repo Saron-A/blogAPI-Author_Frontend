@@ -12,7 +12,7 @@ This application communicates with the BlogAPI Backend and is intended for users
 
 Repository:
 
-`[VIEWER_FRONTEND_REPOSITORY_URL]`
+`https://github.com/Saron-A/blogAPI-Viewer_Frontend`
 
 The public-facing side of the platform where readers consume published content.
 
@@ -20,7 +20,7 @@ The public-facing side of the platform where readers consume published content.
 
 Repository:
 
-`[BACKEND_REPOSITORY_URL]`
+`https://github.com/Saron-A/blogAPI-backend`
 
 Handles authentication, authorization, data storage, and API communication.
 
@@ -71,7 +71,7 @@ Handles authentication, authorization, data storage, and API communication.
 Clone repository:
 
 ```bash
-git clone <AUTHOR_FRONTEND_REPOSITORY_URL>
+git clone https://github.com/Saron-A/blogAPI-Author_Frontend
 ```
 
 Navigate into project:
